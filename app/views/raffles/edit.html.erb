@@ -1,0 +1,8 @@
+<h1>Editing raffle</h1>
+
+<%= form_for @raffle, url: {action: "update"} do |f| %>
+  <%= f.text_field :email %>
+  <%= f.submit "Update Raffle" %>
+<% end %>
+
+<%= link_to 'Show', action: "show", id: @raffle.sig %> |

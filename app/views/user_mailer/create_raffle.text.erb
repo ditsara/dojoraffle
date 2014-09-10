@@ -1,0 +1,9 @@
+You created a new Dojo Raffle!
+==============================
+
+Keep this email. Raffle link:
+<%= url_for(controller: 'raffles',
+            action: 'show',
+            only_path: false,
+            id: @raffle.sig) %>
+Thanks for using Dojo Raffle and have a great day!

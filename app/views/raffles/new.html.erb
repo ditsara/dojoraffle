@@ -1,0 +1,7 @@
+<h1>Create New Raffle</h1>
+
+<%= form_for @raffle, url: {action: "create"} do |f| %>
+  <%= label_tag(:email, "Email Address") %>
+  <%= f.text_field :email %>
+  <%= f.submit "Create New Raffle" %>
+<% end %>

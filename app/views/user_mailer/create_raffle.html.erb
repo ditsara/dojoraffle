@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You created a new Dojo Raffle!</h1>
+    <p>
+      Keep this email. Raffle link:<br>
+      <%= url_for(controller: 'raffles',
+            action: 'show',
+            only_path: false,
+            id: @raffle.sig) %>
+    </p>
+    <p>Thanks for using Dojo Raffle and have a great day!</p>
+  </body>
+</html>
