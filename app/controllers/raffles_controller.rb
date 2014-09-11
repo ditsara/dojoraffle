@@ -11,6 +11,7 @@ class RafflesController < ApplicationController
   # Show raffles only by their signature to provide a small amount of security
   # GET /raffles/8nvP59hpJdZ2Czabyvxh..
   def show
+    @new_player = @raffle.players.build
   end
 
   # GET /raffles/new
@@ -48,7 +49,7 @@ class RafflesController < ApplicationController
         format.html { redirect_to action: "show", id: @raffle.sig, notice: 'Raffle was successfully updated.' }
         # format.json { render :show, status: :ok, location: @raffle }
       else
-        format.html { render :edit }
+        format.html { render :show }
         # format.json { render json: @raffle.errors, status: :unprocessable_entity }
       end
     end
@@ -73,6 +74,7 @@ class RafflesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def raffle_params
-      params.require(:raffle).permit(:sig, :email)
+      params.require(:raffle).permit(:sig, :email,
+        players_attributes: [:id, :name, :tickets, :_destroy])
     end
 end

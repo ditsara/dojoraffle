@@ -10,4 +10,37 @@
   <%= @raffle.email %>
 </p>
 
-<%= link_to 'Edit', action: "edit", id: @raffle.sig %>
+<h2>Players</h2>
+
+<%= form_for @raffle, url: {action: "update"} do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>#Tix</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= f.fields_for :players do |f| %>
+        <tr>
+          <td><%= f.object.id %></td>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.number_field :tickets %></td>
+          <td><%= link_to_if(f.object.id, 'Delete', f.object, method: :delete, 
+                      data: { confirm: 'Are you sure?' }) do
+                    '' #show nothing
+                  end%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= f.submit "Update" %>
+<% end %>
+
+<hr />
+<%= link_to 'New Raffle', new_raffle_path %>
+
