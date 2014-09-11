@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winner: MyString
+  winner_id: 1
+  total_tickets: 1
+  winner_tickets: 1
+  raffle_id: 1
+
+two:
+  winner: MyString
+  winner_id: 1
+  total_tickets: 1
+  winner_tickets: 1
+  raffle_id: 1

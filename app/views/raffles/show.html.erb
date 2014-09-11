@@ -13,7 +13,7 @@
 <h2>Players</h2>
 
 <%= form_for @raffle, url: {action: "update"} do |f| %>
-  <table>
+  <table border=1>
     <thead>
       <tr>
         <th>ID</th>
@@ -31,7 +31,7 @@
           <td><%= f.number_field :tickets %></td>
           <td><%= link_to_if(f.object.id, 'Delete', f.object, method: :delete, 
                       data: { confirm: 'Are you sure?' }) do
-                    '' #show nothing
+                    '' # no id -> new (unsaved) obj -> show no delete button
                   end%>
           </td>
         </tr>
@@ -41,6 +41,32 @@
   <%= f.submit "Update" %>
 <% end %>
 
+<hr />
+<h2>Drawings</h2>
+
+  <table border=1>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Winner</th>
+        <th>Winner #Tix</th>
+        <th>Total Tix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @raffle.drawings.each do |drawing| %>
+        <tr>
+          <td><%= drawing.created_at %></td>
+          <td><%= drawing.winner %></td>
+          <td><%= drawing.winner_tickets %></td>
+          <td><%= drawing.total_tickets %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%= button_to 'New Drawing', action: "create", controller: "drawings", 
+raffle_id: @raffle.sig %>
 <hr />
 <%= link_to 'New Raffle', new_raffle_path %>
 

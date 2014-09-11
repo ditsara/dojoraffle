@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :raffles
+  resources :raffles, except: [:index] do
+    resources :drawings, only: [:create]
+  end
   resources :players, only: [:destroy]
+  
+  root to: 'raffles#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

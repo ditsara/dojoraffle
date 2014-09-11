@@ -1,6 +1,9 @@
 class Raffle < ActiveRecord::Base
   has_many :players, dependent: :destroy, primary_key: "sig"
   accepts_nested_attributes_for :players, :reject_if => :players_filter, :allow_destroy => true
+  
+  has_many :drawings, dependent: :destroy, primary_key: "sig"
+  accepts_nested_attributes_for :drawings
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
